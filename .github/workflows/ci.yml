@@ -17,30 +17,24 @@ jobs:
       - name: Setup Node.js 
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-
-      - name: Cache dependencies
-        uses: actions/cache@v3
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json')}}
-          restore-keys: |
-            ${{ runner.os }}-node-
+          node-version: 22
 
       - name: Install dependencies
-        run: npm ci 
+        run: npm install 
 
       - name: Run tests
         run: npm test
 
-      - name: Archive project as artifact
+      - name: Build Docker image
+        run: |
+          docker build -t ci-pipeline-demo:latest .
+
+      - name: Save Docker image to tar 
+        run: |
+          docker save ci-pipeline-demo:latest -o ci-pipeline-demo.tar
+
+      - name: Upload Docker image artifact
         uses: actions/upload-artifact@v4
         with:
-          name: node-backend-artifact
-          # The | means a multi-line YAML string. Everything under it (indented) is treated as one input.
-          path: | 
-            .
-            !node_modules/
-            !.git/
-
-
+          name: ci-pipeline-demo-image
+          path: ci-pipeline-demo.tar
