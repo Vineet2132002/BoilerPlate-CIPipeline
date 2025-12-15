@@ -1,5 +1,5 @@
 services:
   app:
-    build: .
+    image: ci-pipeline-demo:latest
     ports:
       - "3000:3000"

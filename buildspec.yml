@@ -1,0 +1,16 @@
+version: 0.2
+
+phases:
+  build:
+    commands:
+      - docker build -t ci-pipeline-demo:latest .
+  post_build:
+    commands:
+      - docker save ci-pipeline-demo:latest -o ci-pipeline-demo.tar
+
+artifacts:
+  files:
+    - ci-pipeline-demo.tar
+    - appspec.yml
+    - scripts/**/*
+    - docker-compose.yml
