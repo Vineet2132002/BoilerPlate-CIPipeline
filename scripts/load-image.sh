@@ -3,4 +3,4 @@ set -e
 
 cd /home/ubuntu/app
 
-docker load -i ci-pipeline-demo.tar
+sudo docker load -i ci-pipeline-demo.tar
