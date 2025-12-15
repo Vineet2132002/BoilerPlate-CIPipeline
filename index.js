@@ -1,21 +1,22 @@
 const express = require('express');
+const path = require('path');
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
-// Middleware to parse JSON bodies
-app.use(express.json());
+// Serve static files
+app.use(express.static('public'));
 
-// Sample route
+// Main route
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
+// Health check endpoint for load balancer
 app.get('/health', (req, res) => {
-  res.send('OK');
-})
+  res.status(200).json({ status: 'healthy', timestamp: new Date().toISOString() });
+});
 
-// Start the server
-app.listen(port, () => {
-  console.log(`Server is running at http://localhost:${port}`);
-  console.log('CI Pipeline Demo Application');
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`🚀 Server running on port ${PORT}`);
+  console.log(`🌐 Open http://localhost:${PORT} to view`);
 });
