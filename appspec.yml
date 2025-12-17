@@ -3,15 +3,21 @@ os: linux
 
 files:
   - source: /
-    destination: /opt/ci-pipeline-demo/releases/release-${DEPLOYMENT_ID}
+    destination: /opt/ci-pipeline-demo/releases/latest-release
+
+    # destination: /opt/ci-pipeline-demo/releases/release-${DEPLOYMENT_ID}
 
 hooks:
   BeforeInstall:
-    - location: scripts/stop.sh
+    - location: scripts/prepare.sh
       timeout: 300
       runas: ubuntu
 
   AfterInstall:
+    - location: scripts/rename-release.sh
+      timeout: 300
+      runas: ubuntu
+      
     - location: scripts/switch-symlink.sh
       timeout: 300
       runas: ubuntu

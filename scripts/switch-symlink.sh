@@ -15,3 +15,5 @@ echo "Switching symlink to new release directory: $RELEASE_DIR"
 # -f -> forcefully remove existing destination files
 # -n -> treat destination that is a symlink to a directory as a normal file, preventing recursive linking
 ln -sfn "$RELEASE_DIR" "$CURRENT_LINK"
+
+echo "Symlink switched to deployment ${DEPLOYMENT_ID}"
