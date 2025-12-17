@@ -1,3 +1,3 @@
 #!/bin/bash
 cd /home/ubuntu/app
-docker compose up -d
+sudo docker compose up -d
