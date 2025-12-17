@@ -3,7 +3,7 @@ os: linux
 
 files:
   - source: /
-    destination: /home/ubuntu/app
+    destination: /opt/ci-pipeline-demo/releases/release-${DEPLOYMENT_ID}
 
 hooks:
   BeforeInstall:
@@ -13,6 +13,10 @@ hooks:
 
   AfterInstall:
     - location: scripts/load-image.sh
+      timeout: 300
+      runas: ubuntu
+
+    - location: scripts/switch-symlink.sh
       timeout: 300
       runas: ubuntu
 

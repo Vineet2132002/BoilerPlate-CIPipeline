@@ -1,4 +1,4 @@
 #!/bin/bash
-cd /home/ubuntu/app
+cd /opt/ci-pipeline-demo/current
 chmod +x scripts/*.sh
 sudo docker compose down || true

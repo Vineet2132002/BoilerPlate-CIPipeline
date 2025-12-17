@@ -1,3 +1,3 @@
 #!/bin/bash
-cd /home/ubuntu/app
+cd /opt/ci-pipeline-demo/current
 sudo docker compose up -d
