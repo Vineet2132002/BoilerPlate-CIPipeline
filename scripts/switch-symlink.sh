@@ -14,4 +14,4 @@ echo "Switching symlink to new release directory: $RELEASE_DIR"
 # -s -> create a symbolic link
 # -f -> forcefully remove existing destination files
 # -n -> treat destination that is a symlink to a directory as a normal file, preventing recursive linking
-sudo ln -sfn "$RELEASE_DIR" "$CURRENT_LINK"
+ln -sfn "$RELEASE_DIR" "$CURRENT_LINK"
