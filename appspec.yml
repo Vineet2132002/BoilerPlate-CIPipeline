@@ -12,11 +12,11 @@ hooks:
       runas: ubuntu
 
   AfterInstall:
-    - location: scripts/load-image.sh
+    - location: scripts/switch-symlink.sh
       timeout: 300
       runas: ubuntu
 
-    - location: scripts/switch-symlink.sh
+    - location: scripts/load-image.sh
       timeout: 300
       runas: ubuntu
 
